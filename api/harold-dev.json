@@ -1,0 +1,67 @@
+{
+    "spec": {
+      "name": "harold-dev",
+      "description": "harold.gutierrez@nutanix.com",
+      "resources": {
+        "num_threads_per_core": 1,
+        "memory_size_mib": 16384,
+        "disk_list": [
+          {
+            "device_properties": {
+              "device_type": "DISK",
+              "disk_address": {
+                "device_index": 0,
+                "adapter_type": "SCSI"
+              }
+            },
+            "data_source_reference": {
+              "kind": "image",
+              "uuid": "4fdc58c6-f3fb-48b4-b633-d6b77dea5585"
+            }
+          }
+        ],
+        "serial_port_list": [
+          {
+            "index": 0,
+            "is_connected": true
+          }
+        ],
+        "power_state": "ON",
+        "num_vcpus_per_socket": 1,
+        "num_sockets": 8,
+        "guest_customization": {
+          "cloud_init": {
+            "user_data": "I2Nsb3VkLWNvbmZpZwoKIyBzZXQgdGhlIGhvc3RuYW1lCmZxZG46IGhhcm9sZC1kZXYKCnVzZXJzOgogIC0gbmFtZTogaGFyb2xkCiAgICBsb2NrX3Bhc3N3ZDogZmFsc2UKICAgIGdyb3Vwczogd2hlZWwKICAgIHN1ZG86IEFMTD0oQUxMKSBOT1BBU1NXRDpBTEwKICAgIHNoZWxsOiAvYmluL3pzaAogICAgaGFzaGVkX3Bhc3N3ZDogJDYkcm91bmRzPTQwOTYkclo0SS9JT2h5NlpGalY0ayRIdnNscUl2QjlzSnJncXRiNjY5Nm96SmhocTJSc0lSZFBVOTEzT2hwenQyM200amNYOHVnV0I5SnZ2emsuVzdNczJ3NW1uY3hYZDNleWdjL2taYTNoLwogICAgc3NoLWF1dGhvcml6ZWQta2V5czoKICAgICAgLSBzc2gtcnNhIEFBQUFCM056YUMxeWMyRUFBQUFEQVFBQkFBQUJBUURNQk1iV2g3aVdNeTFySHpkd1RJZmpHREdKcW4xNGt5UmdaekxqaDk4YlBnUkd4SmhIbS94THlEcCswRlJ2YUVwVU1GQnRBN0FOOThwdEJVOEZTVHhRcTA1a3NidktoZFRObTl5dC9NZ3l4UWtQZHR0RER2a2hXemxoVGdnQW4rN3U3Sk1obXptTDJDS3N0VmlEdHBuUC9CSHZaNVYwZ3Jzc2tYVFFoaHNIdkN1NU9lY3F4aS9PS2NCREQ4Y2thRDM3WVZaYytoYjM1TTJrTUxrdlhYSnovVGR4VWEvbk0yN04vR1hURWFSUEROYUVVYmhyczZkM3FLYlNYU3VLcVN1UzBVNEUzbHozNER2LzVOSWFsUnVwaGV0c00vVnVXYUtmNVcrS0tZWURYVDRSSHBadVJab2svVG8xdUx4c212SHJDajUwVlgrQVYvbmNnc0hvcTk5LyBoYXJvbGQuY2FsZGVyb25ASGFyb2xkcy1NYWNCb29rLVByby5sb2NhbAoKc3NoX3B3YXV0aDogVHJ1ZQoKIyBTZXQgdGltZXpvbmUKdGltZXpvbmU6IFVUQwoKIyBJbnN0YWxsIHBhY2thZ2VzCnBhY2thZ2VzOgogIC0gY3VybAogIC0genNoCiAgLSBnaXQKCiMgUmVtb3ZlIGNsb3VkLWluaXQKcnVuY21kOgogIC0geXVtIC15IHJlbW92ZSBjbG91ZC1pbml0CiAgLSBzdSAtIGhhcm9sZCAtYyAnc2ggLWMgIiQoY3VybCAtZnNTTCBodHRwczovL3Jhdy5naXRodWIuY29tL29obXl6c2gvb2hteXpzaC9tYXN0ZXIvdG9vbHMvaW5zdGFsbC5zaCkiJwogIC0gc3UgLSBoYXJvbGQgLWMgJ2dpdCBjbG9uZSAtLWRlcHRoPTEgaHR0cHM6Ly9naXRodWIuY29tL3JvbWthdHYvcG93ZXJsZXZlbDEway5naXQgJHtaU0hfQ1VTVE9NOi0kSE9NRS8ub2gtbXktenNoL2N1c3RvbX0vdGhlbWVzL3Bvd2VybGV2ZWwxMGsnCiAgLSBzdSAtIGhhcm9sZCAtYyAnc2VkIC1pLmJhayAnczpyb2JieXJ1c3NlbGw6cG93ZXJsZXZlbDEway9wb3dlcmxldmVsMTBrOmcnIH4vLnpzaHJjJwogIC0gc3UgLSBoYXJvbGQgLWMgJ2dpdCBjbG9uZSBodHRwczovL2dpdGh1Yi5jb20venNoLXVzZXJzL3pzaC1hdXRvc3VnZ2VzdGlvbnMgJHtaU0hfQ1VTVE9NOi1+Ly5vaC1teS16c2gvY3VzdG9tfS9wbHVnaW5zL3pzaC1hdXRvc3VnZ2VzdGlvbnMnCiAgLSBzdSAtIGhhcm9sZCAtYyAnZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHViLmNvbS96c2gtdXNlcnMvenNoLXN5bnRheC1oaWdobGlnaHRpbmcuZ2l0ICR7WlNIX0NVU1RPTTotfi8ub2gtbXktenNoL2N1c3RvbX0vcGx1Z2lucy96c2gtc3ludGF4LWhpZ2hsaWdodGluZycKICAtIHN1IC0gaGFyb2xkIC1jICdzZWQgLWkuYmFrICdzL3BsdWdpbnM9KGdpdCkvcGx1Z2lucz0oZ2l0IHpzaC1hdXRvc3VnZ2VzdGlvbnMgenNoLXN5bnRheC1oaWdobGlnaHRpbmcpL2cnIH4vLnpzaHJjJwoKIyBDb25maWd1cmUgd2hlcmUgb3V0cHV0IHdpbGwgZ28Kb3V0cHV0OgogIGFsbDogIj4+IC92YXIvbG9nL2Nsb3VkLWluaXQubG9nIg=="
+          }
+        },
+        "nic_list": [
+          {
+            "nic_type": "NORMAL_NIC",
+            "ip_endpoint_list": [
+                {
+                  "ip": "10.66.43.30",
+                  "type": "ASSIGNED",
+                  "gateway_address_list": [
+                    "10.66.43.30"
+                  ],
+                  "prefix_length": 32,
+                  "ip_type": "DHCP"
+                }
+            ],
+            "num_queues": 0,
+            "subnet_reference": {
+              "kind": "subnet",
+              "uuid": "d0ee330e-7604-48e4-a36c-1b16b4daafe8"
+            }
+          }
+        ]
+      },
+      "cluster_reference": {
+        "kind": "cluster",
+        "uuid": "00052c80-729d-8705-0000-0000000051fa"
+      }
+    },
+    "metadata": {
+        "kind":"vm"
+     }    
+  }

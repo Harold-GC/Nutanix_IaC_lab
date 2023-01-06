@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+        name = Harold Gutierrez Calderon
+        email = harold.gutierrez@nutanix.com
+[core]
+	editor = emacs
+[color]
+	ui = true
+
+[credential]
+	helper = store --file ~/.git-access
+

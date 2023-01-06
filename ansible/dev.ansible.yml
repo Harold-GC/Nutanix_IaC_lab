@@ -1,0 +1,49 @@
+---
+- name: nutanix dev env
+  hosts: 10.66.43.30
+  tasks:
+  - name: Install required packages
+    yum: 
+      name:
+        - gcc
+        - ca-certificates
+      state: present
+  - name: Copy zsh configuration
+    copy:
+      src: '{{item}}'
+      dest: /home/harold/
+      owner: harold
+      group: harold
+    loop:
+      - ./files/.zshrc
+      - ./files/.p10k.zsh
+  - name: Copy git authentication
+    copy:
+      src: '{{item}}'
+      dest: /home/harold/
+      owner: harold
+      group: harold
+    loop:
+      - ./files/.gitconfig
+      - ./files/.git-access
+  - name: Python virtual environment configuration
+    command:
+      cmd: su - harold -c 'python3 -m venv /home/harold/.venv'
+  - name: Download Canaveral CA Chain certificates
+    get_url:
+      url: '{{item}}'
+      dest: /etc/pki/ca-trust/source/anchors/
+    loop:
+      -  http://canaveral-gatekeeper.canaveral-corp.us-west-2.aws/ca/root-ca.crt
+      -  http://canaveral-gatekeeper.canaveral-corp.us-west-2.aws/ca/intermediate-ca.crt
+  - name: Update certificates trust
+    command:
+      cmd: '{{item}}' 
+    loop:
+      - update-ca-trust force-enable
+      - update-ca-trust extract
+  - name: Git Nutanix checkout
+    become_user: harold
+    git:
+      repo: 'https://fetch-gerrit.dyn.nutanix.com/main'
+      dest: /home/harold/nutanix
