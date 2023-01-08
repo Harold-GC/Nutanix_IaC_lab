@@ -68,3 +68,8 @@ variable vm_memory {
 variable vm_customization {
   type = string
 }
+
+# Ansible variables
+variable ansible_inventory {
+  type = string
+}

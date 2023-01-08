@@ -67,5 +67,24 @@ resource "nutanix_virtual_machine" "vm" {
     subnet_uuid = nutanix_subnet.subnet.id
   }
 
-  provisioner "local-exec" {command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -b -u ansible -i '${self.nic_list[0].ip_endpoint_list[0].ip},' ../ansible/dev.ansible.yml"}
+  # provisioner "local-exec" {command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -b -u ansible -i '${self.nic_list[0].ip_endpoint_list[0].ip},' ../ansible/test_pb.yml"}
+}
+
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [nutanix_virtual_machine.vm]
+
+  create_duration = "30s"
+}
+
+resource "local_file" "ansible_inventory" {
+  depends_on = [time_sleep.wait_30_seconds]
+  content = templatefile("ansible_inventory.tftpl",
+    {
+      group_name = var.vm_name_prefix
+      vm_ips = nutanix_virtual_machine.vm[*].nic_list[0].ip_endpoint_list[0].ip
+    }
+  )
+  filename = var.ansible_inventory
+
+  provisioner "local-exec" {command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -b -u ansible -i '${var.ansible_inventory}' ../ansible/test_pb.yml"}
 }
