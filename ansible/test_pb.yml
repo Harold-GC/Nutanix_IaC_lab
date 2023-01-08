@@ -1,0 +1,11 @@
+---
+- name: Test VM FIO
+  hosts: all
+  tasks:
+  - name: Install required packages
+    yum: 
+      name:
+        - fio
+      state: present
+  - name: FIO Test
+    command: "fio --name=fiotest --filename=/mnt/testfile --size=1Gb --rw=randrw --bs=8K --direct=1 --rwmixread=50 --numjobs=8 --ioengine=libaio --iodepth=32 --group_reporting --runtime=10 --startdelay=0"
