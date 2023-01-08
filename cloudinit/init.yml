@@ -1,8 +1,4 @@
 #cloud-config
-
-# set the hostname
-fqdn: harold-dev
-
 users:
   - name: harold
     gecos: Harold Gutierrez
@@ -33,7 +29,7 @@ packages:
   - zsh
   - git
 
-# Remove cloud-init
+# Remove cloud-init and download ZSH packages.
 runcmd:
   - yum -y remove cloud-init
   - su - harold -c 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
