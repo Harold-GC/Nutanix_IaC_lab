@@ -28,3 +28,6 @@ vm_vcpus                = "<Num vCPUs>"
 vm_sockets              = "<Num of sockets>"
 vm_memory               = "<VM Memory in MB>"
 vm_customization        = "../cloudinit/init.yml"
+
+# Ansible variables
+ansible_inventory = "../ansible/inventory"
