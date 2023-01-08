@@ -1,0 +1,38 @@
+---
+- name: Harold customization
+  hosts: all
+  tasks:
+    - name: Install ZSH packages
+      ansible.builtin.yum:
+        name:
+          - curl
+          - zsh
+          - git
+        state: present
+    - name: Install Oh-my-zsh
+      ansible.builtin.shell: |
+        sudo su - harold -c 'curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o ~/install.sh'
+        sudo su - harold -c 'sh -c ~/install.sh'
+        exit 0
+      register: my_output
+      changed_when: my_output.rc != 0
+    - name: Install p10k
+      become: true
+      become_user: harold
+      ansible.builtin.command: '{{ item }}'
+      register: my_output
+      changed_when: my_output.rc != 0
+      loop:
+        - "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+        - "git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+        - "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+    - name: Copy zsh configuration
+      ansible.builtin.copy:
+        src: '{{ item }}'
+        dest: /home/harold/
+        owner: harold
+        group: harold
+        mode: 0644
+      loop:
+        - ./files/.zshrc
+        - ./files/.p10k.zsh
