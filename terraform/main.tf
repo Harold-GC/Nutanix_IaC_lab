@@ -66,8 +66,6 @@ resource "nutanix_virtual_machine" "vm" {
   nic_list {
     subnet_uuid = nutanix_subnet.subnet.id
   }
-
-  # provisioner "local-exec" {command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -b -u ansible -i '${self.nic_list[0].ip_endpoint_list[0].ip},' ../ansible/test_pb.yml"}
 }
 
 resource "time_sleep" "wait_30_seconds" {
