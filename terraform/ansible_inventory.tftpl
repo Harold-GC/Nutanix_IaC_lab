@@ -1,0 +1,4 @@
+[${group_name}]
+%{ for ip in vm_ips ~}
+${ip} 
+%{ endfor ~}
