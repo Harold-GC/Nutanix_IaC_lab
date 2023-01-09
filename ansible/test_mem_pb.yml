@@ -1,0 +1,13 @@
+---
+- name: Test VM Memory
+  hosts: all
+  tasks:
+  - name: Install stress-ng package
+    ansible.builtin.yum:
+      name:
+        - stress-ng
+      state: present
+  - name: Memory Test
+    ansible.builtin.command: "stress-ng --brk 2 --stack 2 --bigheap 2 -t 60"
+    register: my_output
+    changed_when: my_output.rc != 0

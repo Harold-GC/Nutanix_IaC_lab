@@ -1,0 +1,13 @@
+---
+- name: Test VM CPU
+  hosts: all
+  tasks:
+  - name: Install stress-ng package
+    ansible.builtin.yum:
+      name:
+        - stress-ng
+      state: present
+  - name: CPU Test
+    ansible.builtin.command: "stress-ng --cpu 30 --matrix 1 --mq 3 -t 1m"
+    register: my_output
+    changed_when: my_output.rc != 0
